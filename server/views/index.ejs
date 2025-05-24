@@ -1,0 +1,29 @@
+<%- include('layout') %>
+
+<h1>Bookstore</h1>
+<form method="POST" action="/add" enctype="multipart/form-data">
+  <input name="title" placeholder="Title" required />
+  <input name="author" placeholder="Author" required />
+  <input type="checkbox" name="is_active" /> Active
+  <input type="file" name="file" />
+  <button type="submit">Add Book</button>
+</form>
+
+<table border="1">
+  <thead>
+    <tr><th>Title</th><th>Author</th><th>File</th><th>Actions</th></tr>
+  </thead>
+  <tbody>
+    <% books.forEach(book => { %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.author %></td>
+        <td><%= book.file_path ? `<a href="${book.file_path}">View</a>` : '' %></td>
+        <td>
+          <a href="/edit/<%= book.id %>">Edit</a>
+          <a href="/delete/<%= book.id %>">Delete</a>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>

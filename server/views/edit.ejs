@@ -1,0 +1,10 @@
+<%- include('layout') %>
+<h2>Edit Book</h2>
+<form method="POST" action="/update/<%= book.id %>" enctype="multipart/form-data">
+  <input name="title" value="<%= book.title %>" required />
+  <input name="author" value="<%= book.author %>" required />
+  <input type="checkbox" name="is_active" <%= book.is_active ? 'checked' : '' %> /> Active
+  <input type="hidden" name="oldFile" value="<%= book.file_path %>" />
+  <input type="file" name="file" />
+  <button type="submit">Update</button>
+</form>
